@@ -271,16 +271,17 @@
     .brand .mark { font-size: 13px; }
     .edu-tools { top: calc(48px + env(safe-area-inset-top)); }
     .edu-btn { padding: 0 10px; }
-    .panel { max-height: 72dvh; }
+    .panel { max-height: min(50dvh, 400px); }
   }
 
 
-  /* Mobil bilgi kartı: daha kompakt yazılar ve boşluklar */
+  /* Mobil bilgi kartı: küre görünür kalsın diye daha kısa ve kompakt */
   @media (max-width: 700px) {
     .panel {
-      max-height: min(64dvh, 570px);
-      padding: 34px 16px calc(16px + env(safe-area-inset-bottom));
+      max-height: min(46dvh, 420px);
+      padding: 31px 15px calc(14px + env(safe-area-inset-bottom));
       border-radius: 21px 21px 0 0;
+      overflow-y: auto;
     }
     .panel .close { width: 31px; height: 31px; font-size: 14px; }
     .panel .eyebrow { font-size: 9px; margin-bottom: 6px; letter-spacing: .09em; }
@@ -757,6 +758,10 @@ var borderLines, oceanBorderLines, highlightLine = null;
 var raycaster, mouse;
 var yaw = 0.4, pitch = 0.25, targetYaw = 0.4, targetPitch = 0.25;
 var isDragging = false, lastX = 0, lastY = 0, pointerDownX = 0, pointerDownY = 0, didDrag = false;
+var activePointers = new Map();
+var isPinching = false, pinchStartDistance = 0, pinchStartZoomFactor = 1;
+var cameraZoomFactor = 1;
+var MIN_ZOOM_FACTOR = 0.58, MAX_ZOOM_FACTOR = 1.75;
 var dragVelocityX = 0, dragVelocityY = 0;
 var lastFrameTime = performance.now();
 var pageVisible = !document.hidden;
@@ -853,15 +858,26 @@ function getResponsiveCameraDistance(){
 
 function updateResponsiveCamera(){
   if (!camera) return;
-  camera.position.z = getResponsiveCameraDistance();
+  camera.position.z = getResponsiveCameraDistance() * cameraZoomFactor;
   camera.updateProjectionMatrix();
+}
+
+function setCameraZoomFactor(nextFactor){
+  cameraZoomFactor = Math.max(MIN_ZOOM_FACTOR, Math.min(MAX_ZOOM_FACTOR, nextFactor));
+  updateResponsiveCamera();
+}
+
+function pointerDistance(){
+  var points = Array.from(activePointers.values());
+  if (points.length < 2) return 0;
+  return Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
 }
 
 function init(){
   var stage = document.getElementById('stage');
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(42, stage.clientWidth / stage.clientHeight, 0.1, 1000);
-  camera.position.set(0, 0, getResponsiveCameraDistance());
+  camera.position.set(0, 0, getResponsiveCameraDistance() * cameraZoomFactor);
 
   var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth <= 820;
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'default' });
@@ -1342,19 +1358,42 @@ function rotateGlobeByPixels(dx, dy){
 
 function onPointerDown(e){
   if (e.preventDefault) e.preventDefault();
-  isDragging = true;
-  didDrag = false;
+  activePointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
   flying = false;
   dragVelocityX = 0;
   dragVelocityY = 0;
+
+  if (activePointers.size >= 2){
+    isPinching = true;
+    isDragging = false;
+    didDrag = true;
+    pinchStartDistance = pointerDistance();
+    pinchStartZoomFactor = cameraZoomFactor;
+    renderer.domElement.classList.add('dragging');
+    return;
+  }
+
+  isDragging = true;
+  didDrag = false;
   pointerDownX = lastX = e.clientX;
   pointerDownY = lastY = e.clientY;
   if (renderer.domElement.setPointerCapture) renderer.domElement.setPointerCapture(e.pointerId);
   renderer.domElement.classList.add('dragging');
 }
 function onPointerMove(e){
-  if (!isDragging) return;
+  if (activePointers.has(e.pointerId)) activePointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
   if (e.preventDefault) e.preventDefault();
+
+  if (isPinching && activePointers.size >= 2){
+    var currentDistance = pointerDistance();
+    if (pinchStartDistance > 0 && currentDistance > 0){
+      setCameraZoomFactor(pinchStartZoomFactor * (pinchStartDistance / currentDistance));
+    }
+    didDrag = true;
+    return;
+  }
+
+  if (!isDragging) return;
   var dx = e.clientX - lastX, dy = e.clientY - lastY;
   lastX = e.clientX; lastY = e.clientY;
   var dragThreshold = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) ? 8 : 5;
@@ -1365,11 +1404,31 @@ function onPointerMove(e){
   dragVelocityY = dy;
 }
 function onPointerUp(e){
-  isDragging = false;
-  renderer.domElement.classList.remove('dragging');
+  activePointers.delete(e.pointerId);
   if (renderer.domElement.releasePointerCapture && renderer.domElement.hasPointerCapture && renderer.domElement.hasPointerCapture(e.pointerId)) {
     renderer.domElement.releasePointerCapture(e.pointerId);
   }
+
+  if (isPinching){
+    didDrag = true;
+    if (activePointers.size < 2){
+      isPinching = false;
+      pinchStartDistance = 0;
+      if (activePointers.size === 1){
+        var remaining = Array.from(activePointers.values())[0];
+        lastX = pointerDownX = remaining.x;
+        lastY = pointerDownY = remaining.y;
+        isDragging = true;
+      } else {
+        isDragging = false;
+        renderer.domElement.classList.remove('dragging');
+      }
+    }
+    return;
+  }
+
+  isDragging = false;
+  renderer.domElement.classList.remove('dragging');
   if (!didDrag) handleClick(e);
 }
 
@@ -1555,20 +1614,31 @@ function bindEvents(){
     window.addEventListener('pointercancel', onPointerUp, { passive: false });
   } else {
     el.addEventListener('touchstart', function(ev){
-      if (!ev.touches.length) return;
       ev.preventDefault();
-      var t = ev.touches[0];
-      onPointerDown({ clientX:t.clientX, clientY:t.clientY, pointerId:1 });
+      for (var i=0;i<ev.changedTouches.length;i++){
+        var t = ev.changedTouches[i];
+        onPointerDown({ clientX:t.clientX, clientY:t.clientY, pointerId:t.identifier+1, preventDefault:function(){} });
+      }
     }, { passive:false });
     window.addEventListener('touchmove', function(ev){
-      if (!ev.touches.length) return;
       ev.preventDefault();
-      var t = ev.touches[0];
-      onPointerMove({ clientX:t.clientX, clientY:t.clientY, pointerId:1 });
+      for (var i=0;i<ev.changedTouches.length;i++){
+        var t = ev.changedTouches[i];
+        onPointerMove({ clientX:t.clientX, clientY:t.clientY, pointerId:t.identifier+1, preventDefault:function(){} });
+      }
     }, { passive:false });
     window.addEventListener('touchend', function(ev){
-      var t = ev.changedTouches && ev.changedTouches[0];
-      onPointerUp({ clientX:t ? t.clientX : lastX, clientY:t ? t.clientY : lastY, pointerId:1, preventDefault:function(){} });
+      ev.preventDefault();
+      for (var i=0;i<ev.changedTouches.length;i++){
+        var t = ev.changedTouches[i];
+        onPointerUp({ clientX:t.clientX, clientY:t.clientY, pointerId:t.identifier+1, preventDefault:function(){} });
+      }
+    }, { passive:false });
+    window.addEventListener('touchcancel', function(ev){
+      for (var i=0;i<ev.changedTouches.length;i++){
+        var t = ev.changedTouches[i];
+        onPointerUp({ clientX:t.clientX, clientY:t.clientY, pointerId:t.identifier+1, preventDefault:function(){} });
+      }
     }, { passive:false });
   }
   var panelEl = document.getElementById('panel');
