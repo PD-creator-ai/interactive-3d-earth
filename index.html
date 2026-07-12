@@ -2,11 +2,56 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Etkileşimli Dünya</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gerçek Zamanlı 3D Dünya Küresi | Ülkeler, Başkentler ve Coğrafya</title>
+<meta name="description" content="Gerçek zamanlı 3D dünya küresiyle ülkeleri keşfedin; başkentleri, nüfusları, yüzölçümlerini, yönetim biçimlerini ve güncel lider bilgilerini öğrenin.">
+<meta name="keywords" content="3D dünya, dünya küresi, ülkeler, başkentler, coğrafya, nüfus, dünya haritası, eğitici küre">
+<meta name="author" content="Gerçek Zamanlı 3D Dünya Küresi">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="3D Dünya Küresi">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="3D Dünya">
+
+<meta property="og:locale" content="tr_TR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gerçek Zamanlı 3D Dünya Küresi">
+<meta property="og:description" content="Ülkeleri 3D küre üzerinde keşfedin; başkent, nüfus, yüzölçümü ve güncel lider bilgilerini öğrenin.">
+<meta property="og:site_name" content="Gerçek Zamanlı 3D Dünya Küresi">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gerçek Zamanlı 3D Dünya Küresi">
+<meta name="twitter:description" content="Ülkeleri 3D küre üzerinde keşfedin ve coğrafi bilgileri öğrenin.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌍%3C/text%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Gerçek Zamanlı 3D Dünya Küresi",
+  "description": "Ülkeleri 3D dünya küresi üzerinde keşfetmeye ve coğrafi bilgileri öğrenmeye yarayan eğitici web uygulaması.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "tr-TR",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY"
+  }
+}
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  .sr-only {
+    position: absolute !important; width: 1px !important; height: 1px !important;
+    padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;
+  }
   html, body {
     width: 100%; height: 100%; overflow: hidden;
     background: #000000;
@@ -180,6 +225,7 @@
 </head>
 <body>
 <div id="stage">
+  <h1 class="sr-only">Gerçek Zamanlı 3D Dünya Küresi: Ülkeler, Başkentler ve Coğrafya</h1>
   <div class="brand">
     <div class="mark"><span class="dot"></span>DÜNYA MODELİ</div>
     <div class="sub">Gerçek zamanlı 3D küre</div>
@@ -212,7 +258,7 @@
     <div class="gov"><div class="l" id="lGov">Yönetim biçimi</div><div class="v" id="pGov">-</div></div>
     <div class="leader" id="leaderBlock"><div class="l" id="lLeader">Devlet başkanı</div><div class="v" id="pLeader">-</div><div class="meta" id="pLeaderMeta"></div></div>
     <div class="fact" id="pFact">-</div>
-    <div class="verified" id="pVerified">Temel ülke bilgileri yerel veridir. Lider bilgisi Wikidata’dan canlı alınır ve 24 saat önbelleğe alınır. Nüfus bilgisi Dünya Bankası’ndan alınır ve 1 yıl cihazda önbelleğe alınır.</div>
+    <div class="verified" id="pVerified">Temel ülke bilgileri yerel veridir. Lider bilgisi Wikidata’dan canlı alınır ve 14 gün önbelleğe alınır. Nüfus bilgisi Dünya Bankası’ndan alınır ve 1 yıl cihazda önbelleğe alınır.</div>
   </div>
 
 
@@ -309,6 +355,7 @@ MYS:{cap:"Kuala Lumpur",pop:"34 milyon",reg:"Asya",flag:"🇲🇾",fact:"Malay Y
 MEX:{cap:"Meksiko",pop:"128 milyon",reg:"Kuzey Amerika",flag:"🇲🇽",fact:"İspanyolca konuşan en kalabalık ülkedir.",area:"1.964.375 km²",founded:"1821",gov:"Federal başkanlık cumhuriyeti"},
 MNG:{cap:"Ulan Batur",pop:"3,4 milyon",reg:"Asya",flag:"🇲🇳",fact:"Dünyanın nüfus yoğunluğu en düşük bağımsız ülkesidir.",area:"1.564.110 km²",founded:"1206",gov:"Yarı başkanlık cumhuriyeti"},
 MAR:{cap:"Rabat",pop:"37 milyon",reg:"Afrika",flag:"🇲🇦",fact:"Atlas Dağları ile Sahra Çölü arasında renkli medineleriyle tanınır.",area:"446.550 km²",founded:"MS 788",gov:"Anayasal monarşi"},
+MLI:{cap:"Bamako",pop:"24 milyon",reg:"Afrika",flag:"🇲🇱",fact:"Batı Afrika’da yer alan, topraklarının büyük bölümü Sahra ve Sahel kuşağında bulunan denize kıyısı olmayan bir ülkedir.",area:"1.240.192 km²",founded:"1960",gov:"Geçiş dönemi yönetimi"},
 MMR:{cap:"Naypyidaw",pop:"55 milyon",reg:"Asya",flag:"🇲🇲",fact:"Binlerce antik pagodanın bulunduğu Bagan bölgesine sahiptir.",area:"676.578 km²",founded:"1948",gov:"Askeri yönetim"},
 NPL:{cap:"Katmandu",pop:"30 milyon",reg:"Asya",flag:"🇳🇵",fact:"Everest Dağı dahil dünyanın en yüksek zirvelerinin çoğunu barındırır.",area:"147.516 km²",founded:"1768",gov:"Federal parlamenter cumhuriyet"},
 NLD:{cap:"Amsterdam",pop:"18 milyon",reg:"Avrupa",flag:"🇳🇱",fact:"Topraklarının büyük kısmı deniz seviyesinin altındadır.",area:"41.850 km²",founded:"1815",gov:"Anayasal monarşi"},
@@ -353,7 +400,82 @@ VNM:{cap:"Hanoi",pop:"99 milyon",reg:"Asya",flag:"🇻🇳",fact:"S harfi şekli
 YEM:{cap:"Sana",pop:"34 milyon",reg:"Asya",flag:"🇾🇪",fact:"Arap Yarımadası'nın güneybatı ucunda tarihi kentlere sahiptir.",area:"527.968 km²",founded:"1990",gov:"Geçiş dönemi yönetimi"},
 ZWE:{cap:"Harare",pop:"16,3 milyon",reg:"Afrika",flag:"🇿🇼",fact:"Dünyanın en büyük şelalelerinden Victoria Şelalesi'ni Zambiya ile paylaşır.",area:"390.757 km²",founded:"1980",gov:"Başkanlık cumhuriyeti"},
 COD:{cap:"Kinşasa",pop:"102 milyon",reg:"Afrika",flag:"🇨🇩",fact:"Afrika'nın en büyük yağmur ormanı havzasının çoğunu barındırır.",area:"2.344.858 km²",founded:"1960",gov:"Yarı başkanlık cumhuriyeti"},
-SDN:{cap:"Hartum",pop:"49 milyon",reg:"Afrika",flag:"🇸🇩",fact:"Beyaz ve Mavi Nil'in birleştiği noktada kuruludur.",area:"1.861.484 km²",founded:"1956",gov:"Geçiş dönemi yönetimi"}
+SDN:{cap:"Hartum",pop:"49 milyon",reg:"Afrika",flag:"🇸🇩",fact:"Beyaz ve Mavi Nil'in birleştiği noktada kuruludur.",area:"1.861.484 km²",founded:"1956",gov:"Geçiş dönemi yönetimi"},
+FJI:{cap:"Suva",pop:"921 bin",reg:"Okyanusya",flag:"🇫🇯",fact:"Okyanusya bölgesinde yer alan bağımsız bir ülkedir.",area:"18.272 km²",founded:"1970",gov:"Parlamenter cumhuriyet"},
+TZA:{cap:"Dodoma",pop:"54 milyon",reg:"Afrika",flag:"🇹🇿",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"945.087 km²",founded:"1961",gov:"Başkanlık cumhuriyeti"},
+ESH:{cap:"El Aaiún (tartışmalı)",pop:"603 bin",reg:"Afrika",flag:"🇪🇭",fact:"Afrika bölgesinde yer alan ve uluslararası statüsü özel değerlendirmelere konu olan bir bölgedir.",area:"266.000 km²",founded:"Tartışmalı statü",gov:"Tartışmalı bölge"},
+PNG:{cap:"Port Moresby",pop:"6,9 milyon",reg:"Okyanusya",flag:"🇵🇬",fact:"Okyanusya bölgesinde yer alan bağımsız bir ülkedir.",area:"462.840 km²",founded:"1975",gov:"Parlamenter monarşi"},
+SOM:{cap:"Mogadişu",pop:"7,5 milyon",reg:"Afrika",flag:"🇸🇴",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"637.657 km²",founded:"1960",gov:"Federal parlamenter cumhuriyet"},
+TCD:{cap:"Encemine",pop:"12,1 milyon",reg:"Afrika",flag:"🇹🇩",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"1.284.000 km²",founded:"1960",gov:"Başkanlık cumhuriyeti"},
+HTI:{cap:"Port-au-Prince",pop:"10,6 milyon",reg:"Karayipler",flag:"🇭🇹",fact:"Karayipler bölgesinde yer alan bağımsız bir ülkedir.",area:"27.750 km²",founded:"1804",gov:"Yarı başkanlık cumhuriyeti"},
+DOM:{cap:"Santo Domingo",pop:"10,7 milyon",reg:"Karayipler",flag:"🇩🇴",fact:"Karayipler bölgesinde yer alan bağımsız bir ülkedir.",area:"48.671 km²",founded:"1844",gov:"Başkanlık cumhuriyeti"},
+BHS:{cap:"Nassau",pop:"330 bin",reg:"Karayipler",flag:"🇧🇸",fact:"Karayipler bölgesinde yer alan bağımsız bir ülkedir.",area:"13.943 km²",founded:"1973",gov:"Parlamenter monarşi"},
+FLK:{cap:"Stanley",pop:"3 bin",reg:"Güney Amerika",flag:"🇫🇰",fact:"Güney Amerika bölgesinde yer alan özel statülü bir bölgedir.",area:"12.173 km²",founded:"Bağlı bölge",gov:"Birleşik Krallık denizaşırı toprağı"},
+GRL:{cap:"Nuuk",pop:"58 bin",reg:"Kuzey Amerika",flag:"🇬🇱",fact:"Kuzey Amerika bölgesinde yer alan özel statülü bir bölgedir.",area:"2.166.086 km²",founded:"Özerk bölge",gov:"Danimarka Krallığı içinde özerk bölge"},
+ATF:{cap:"Saint Pierre (yönetim merkezi)",pop:"140",reg:"Güney Okyanusu",flag:"🇹🇫",fact:"Güney Okyanusu bölgesinde yer alan özel statülü bir bölgedir.",area:"439.672 km²",founded:"Bağlı bölge",gov:"Fransa denizaşırı toprağı"},
+TLS:{cap:"Dili",pop:"1,3 milyon",reg:"Asya",flag:"🇹🇱",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"14.874 km²",founded:"2002",gov:"Yarı başkanlık cumhuriyeti"},
+LSO:{cap:"Maseru",pop:"2 milyon",reg:"Afrika",flag:"🇱🇸",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"30.355 km²",founded:"1966",gov:"Anayasal monarşi"},
+CRI:{cap:"San José",pop:"4,9 milyon",reg:"Orta Amerika",flag:"🇨🇷",fact:"Orta Amerika bölgesinde yer alan bağımsız bir ülkedir.",area:"51.100 km²",founded:"1821",gov:"Başkanlık cumhuriyeti"},
+NIC:{cap:"Managua",pop:"6 milyon",reg:"Orta Amerika",flag:"🇳🇮",fact:"Orta Amerika bölgesinde yer alan bağımsız bir ülkedir.",area:"130.373 km²",founded:"1821",gov:"Başkanlık cumhuriyeti"},
+BLZ:{cap:"Belmopan",pop:"360 bin",reg:"Orta Amerika",flag:"🇧🇿",fact:"Orta Amerika bölgesinde yer alan bağımsız bir ülkedir.",area:"22.966 km²",founded:"1981",gov:"Parlamenter monarşi"},
+GUY:{cap:"Georgetown",pop:"738 bin",reg:"Güney Amerika",flag:"🇬🇾",fact:"Güney Amerika bölgesinde yer alan bağımsız bir ülkedir.",area:"214.969 km²",founded:"1966",gov:"Başkanlık cumhuriyeti"},
+SUR:{cap:"Paramaribo",pop:"592 bin",reg:"Güney Amerika",flag:"🇸🇷",fact:"Güney Amerika bölgesinde yer alan bağımsız bir ülkedir.",area:"163.820 km²",founded:"1975",gov:"Başkanlık cumhuriyeti"},
+PRI:{cap:"San Juan",pop:"3,4 milyon",reg:"Karayipler",flag:"🇵🇷",fact:"Karayipler bölgesinde yer alan özel statülü bir bölgedir.",area:"9.104 km²",founded:"Bağlı bölge",gov:"ABD’ye bağlı özerk bölge"},
+JAM:{cap:"Kingston",pop:"3 milyon",reg:"Karayipler",flag:"🇯🇲",fact:"Karayipler bölgesinde yer alan bağımsız bir ülkedir.",area:"10.991 km²",founded:"1962",gov:"Parlamenter monarşi"},
+BWA:{cap:"Gaborone",pop:"2,2 milyon",reg:"Afrika",flag:"🇧🇼",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"582.000 km²",founded:"1966",gov:"Parlamenter cumhuriyet"},
+NAM:{cap:"Windhoek",pop:"2,5 milyon",reg:"Afrika",flag:"🇳🇦",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"825.615 km²",founded:"1990",gov:"Başkanlık cumhuriyeti"},
+SEN:{cap:"Dakar",pop:"14,7 milyon",reg:"Afrika",flag:"🇸🇳",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"196.722 km²",founded:"1960",gov:"Başkanlık cumhuriyeti"},
+MRT:{cap:"Nuakşot",pop:"3,8 milyon",reg:"Afrika",flag:"🇲🇷",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"1.030.700 km²",founded:"1960",gov:"Başkanlık cumhuriyeti"},
+BEN:{cap:"Porto-Novo",pop:"11 milyon",reg:"Afrika",flag:"🇧🇯",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"112.622 km²",founded:"1960",gov:"Başkanlık cumhuriyeti"},
+NER:{cap:"Niamey",pop:"19,2 milyon",reg:"Afrika",flag:"🇳🇪",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"1.267.000 km²",founded:"1960",gov:"Askerî geçiş yönetimi"},
+CMR:{cap:"Yaoundé",pop:"25 milyon",reg:"Afrika",flag:"🇨🇲",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"475.442 km²",founded:"1960",gov:"Başkanlık cumhuriyeti"},
+TGO:{cap:"Lomé",pop:"8 milyon",reg:"Afrika",flag:"🇹🇬",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"56.785 km²",founded:"1960",gov:"Parlamenter cumhuriyet"},
+CIV:{cap:"Yamoussoukro",pop:"24,2 milyon",reg:"Afrika",flag:"🇨🇮",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"322.463 km²",founded:"1960",gov:"Başkanlık cumhuriyeti"},
+GIN:{cap:"Konakri",pop:"12,4 milyon",reg:"Afrika",flag:"🇬🇳",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"245.857 km²",founded:"1958",gov:"Askerî geçiş yönetimi"},
+GNB:{cap:"Bissau",pop:"1,8 milyon",reg:"Afrika",flag:"🇬🇼",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"36.125 km²",founded:"1973",gov:"Yarı başkanlık cumhuriyeti"},
+LBR:{cap:"Monrovia",pop:"4,7 milyon",reg:"Afrika",flag:"🇱🇷",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"111.369 km²",founded:"1847",gov:"Başkanlık cumhuriyeti"},
+SLE:{cap:"Freetown",pop:"6,2 milyon",reg:"Afrika",flag:"🇸🇱",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"71.740 km²",founded:"1961",gov:"Başkanlık cumhuriyeti"},
+BFA:{cap:"Ouagadougou",pop:"20,1 milyon",reg:"Afrika",flag:"🇧🇫",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"272.967 km²",founded:"1960",gov:"Askerî geçiş yönetimi"},
+CAF:{cap:"Bangui",pop:"5,6 milyon",reg:"Afrika",flag:"🇨🇫",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"622.984 km²",founded:"1960",gov:"Başkanlık cumhuriyeti"},
+COG:{cap:"Brazzaville",pop:"5 milyon",reg:"Afrika",flag:"🇨🇬",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"342.000 km²",founded:"1960",gov:"Başkanlık cumhuriyeti"},
+GAB:{cap:"Libreville",pop:"1,8 milyon",reg:"Afrika",flag:"🇬🇦",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"267.668 km²",founded:"1960",gov:"Geçiş dönemi başkanlık yönetimi"},
+GNQ:{cap:"Malabo",pop:"778 bin",reg:"Afrika",flag:"🇬🇶",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"28.051 km²",founded:"1968",gov:"Başkanlık cumhuriyeti"},
+ZMB:{cap:"Lusaka",pop:"16 milyon",reg:"Afrika",flag:"🇿🇲",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"752.612 km²",founded:"1964",gov:"Başkanlık cumhuriyeti"},
+MWI:{cap:"Lilongwe",pop:"19,2 milyon",reg:"Afrika",flag:"🇲🇼",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"118.484 km²",founded:"1964",gov:"Başkanlık cumhuriyeti"},
+MOZ:{cap:"Maputo",pop:"26,6 milyon",reg:"Afrika",flag:"🇲🇿",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"801.590 km²",founded:"1975",gov:"Başkanlık cumhuriyeti"},
+SWZ:{cap:"Mbabane / Lobamba",pop:"1,5 milyon",reg:"Afrika",flag:"🇸🇿",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"17.364 km²",founded:"1968",gov:"Mutlak monarşi"},
+AGO:{cap:"Luanda",pop:"29,3 milyon",reg:"Afrika",flag:"🇦🇴",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"1.246.700 km²",founded:"1975",gov:"Başkanlık cumhuriyeti"},
+BDI:{cap:"Gitega",pop:"11,5 milyon",reg:"Afrika",flag:"🇧🇮",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"27.834 km²",founded:"1962",gov:"Başkanlık cumhuriyeti"},
+MDG:{cap:"Antananarivo",pop:"25,1 milyon",reg:"Afrika",flag:"🇲🇬",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"587.041 km²",founded:"1960",gov:"Yarı başkanlık cumhuriyeti"},
+PSE:{cap:"Doğu Kudüs (iddia) / Ramallah (idari merkez)",pop:"4,5 milyon",reg:"Asya",flag:"🇵🇸",fact:"Asya bölgesinde yer alan ve uluslararası statüsü özel değerlendirmelere konu olan bir bölgedir.",area:"6.020 km²",founded:"1988",gov:"Yarı başkanlık sistemi"},
+GMB:{cap:"Banjul",pop:"2,1 milyon",reg:"Afrika",flag:"🇬🇲",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"11.295 km²",founded:"1965",gov:"Başkanlık cumhuriyeti"},
+VUT:{cap:"Port Vila",pop:"283 bin",reg:"Okyanusya",flag:"🇻🇺",fact:"Okyanusya bölgesinde yer alan bağımsız bir ülkedir.",area:"12.189 km²",founded:"1980",gov:"Parlamenter cumhuriyet"},
+LAO:{cap:"Vientiane",pop:"7,1 milyon",reg:"Asya",flag:"🇱🇦",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"236.800 km²",founded:"1953",gov:"Tek parti sosyalist cumhuriyet"},
+PRK:{cap:"Pyongyang",pop:"25,2 milyon",reg:"Asya",flag:"🇰🇵",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"120.538 km²",founded:"1948",gov:"Tek parti sosyalist devlet"},
+BTN:{cap:"Thimphu",pop:"758 bin",reg:"Asya",flag:"🇧🇹",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"38.394 km²",founded:"1907",gov:"Anayasal monarşi"},
+TJK:{cap:"Duşanbe",pop:"8,5 milyon",reg:"Asya",flag:"🇹🇯",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"143.100 km²",founded:"1991",gov:"Başkanlık cumhuriyeti"},
+KGZ:{cap:"Bişkek",pop:"5,8 milyon",reg:"Asya",flag:"🇰🇬",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"199.951 km²",founded:"1991",gov:"Başkanlık cumhuriyeti"},
+TKM:{cap:"Aşkabat",pop:"5,4 milyon",reg:"Asya",flag:"🇹🇲",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"488.100 km²",founded:"1991",gov:"Başkanlık cumhuriyeti"},
+ARM:{cap:"Erivan",pop:"3 milyon",reg:"Asya",flag:"🇦🇲",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"29.743 km²",founded:"1991",gov:"Parlamenter cumhuriyet"},
+MDA:{cap:"Kişinev",pop:"3,5 milyon",reg:"Avrupa",flag:"🇲🇩",fact:"Avrupa bölgesinde yer alan bağımsız bir ülkedir.",area:"33.846 km²",founded:"1991",gov:"Parlamenter cumhuriyet"},
+NCL:{cap:"Nouméa",pop:"279 bin",reg:"Okyanusya",flag:"🇳🇨",fact:"Okyanusya bölgesinde yer alan özel statülü bir bölgedir.",area:"18.575 km²",founded:"Bağlı bölge",gov:"Fransa’ya bağlı özel statülü bölge"},
+SLB:{cap:"Honiara",pop:"648 bin",reg:"Okyanusya",flag:"🇸🇧",fact:"Okyanusya bölgesinde yer alan bağımsız bir ülkedir.",area:"28.896 km²",founded:"1978",gov:"Parlamenter monarşi"},
+AZE:{cap:"Bakü",pop:"10 milyon",reg:"Asya",flag:"🇦🇿",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"86.600 km²",founded:"1991",gov:"Başkanlık cumhuriyeti"},
+GEO:{cap:"Tiflis",pop:"4,9 milyon",reg:"Asya",flag:"🇬🇪",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"69.700 km²",founded:"1991",gov:"Parlamenter cumhuriyet"},
+BRN:{cap:"Bandar Seri Begawan",pop:"444 bin",reg:"Asya",flag:"🇧🇳",fact:"Asya bölgesinde yer alan bağımsız bir ülkedir.",area:"5.765 km²",founded:"1984",gov:"Mutlak monarşi (sultanlık)"},
+ERI:{cap:"Asmara",pop:"5,9 milyon",reg:"Afrika",flag:"🇪🇷",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"117.600 km²",founded:"1993",gov:"Tek parti başkanlık sistemi"},
+ATA:{cap:"Başkent yok",pop:"0",reg:"Antarktika",flag:"🇦🇶",fact:"Dünya’nın en güneyindeki kıtadır ve kalıcı yerli nüfusu yoktur.",area:"14.000.000 km²",founded:"Antarktika Antlaşması: 1959",gov:"Uluslararası antlaşmalarla yönetilen kıta"},
+NCY:{cap:"Lefkoşa",pop:"382 bin",reg:"Avrupa",flag:"🌍",fact:"Avrupa bölgesinde yer alan ve uluslararası statüsü özel değerlendirmelere konu olan bir bölgedir.",area:"3.355 km²",founded:"1983",gov:"Yarı başkanlık sistemi"},
+DJI:{cap:"Cibuti",pop:"865 bin",reg:"Afrika",flag:"🇩🇯",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"23.200 km²",founded:"1977",gov:"Başkanlık cumhuriyeti"},
+SML:{cap:"Hargeisa",pop:"6,2 milyon",reg:"Afrika",flag:"🌍",fact:"Afrika bölgesinde yer alan ve uluslararası statüsü özel değerlendirmelere konu olan bir bölgedir.",area:"176.120 km²",founded:"1991",gov:"Başkanlık sistemi (sınırlı tanınma)"},
+UGA:{cap:"Kampala",pop:"39,6 milyon",reg:"Afrika",flag:"🇺🇬",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"241.550 km²",founded:"1962",gov:"Başkanlık cumhuriyeti"},
+RWA:{cap:"Kigali",pop:"11,9 milyon",reg:"Afrika",flag:"🇷🇼",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"26.338 km²",founded:"1962",gov:"Başkanlık cumhuriyeti"},
+BIH:{cap:"Saraybosna",pop:"3,9 milyon",reg:"Avrupa",flag:"🇧🇦",fact:"Avrupa bölgesinde yer alan bağımsız bir ülkedir.",area:"51.209 km²",founded:"1992",gov:"Federal parlamenter cumhuriyet"},
+MKD:{cap:"Üsküp",pop:"2,1 milyon",reg:"Avrupa",flag:"🇲🇰",fact:"Avrupa bölgesinde yer alan bağımsız bir ülkedir.",area:"25.713 km²",founded:"1991",gov:"Parlamenter cumhuriyet"},
+MNE:{cap:"Podgorica",pop:"643 bin",reg:"Avrupa",flag:"🇲🇪",fact:"Avrupa bölgesinde yer alan bağımsız bir ülkedir.",area:"- km²",founded:"2006",gov:"Parlamenter cumhuriyet"},
+XK:{cap:"Priştine",pop:"1,8 milyon",reg:"Avrupa",flag:"🇽🇰",fact:"Avrupa bölgesinde yer alan ve uluslararası statüsü özel değerlendirmelere konu olan bir bölgedir.",area:"10.887 km²",founded:"2008",gov:"Parlamenter cumhuriyet"},
+TTO:{cap:"Port of Spain",pop:"1,2 milyon",reg:"Karayipler",flag:"🇹🇹",fact:"Karayipler bölgesinde yer alan bağımsız bir ülkedir.",area:"5.130 km²",founded:"1962",gov:"Parlamenter cumhuriyet"},
+SSD:{cap:"Juba",pop:"13 milyon",reg:"Afrika",flag:"🇸🇸",fact:"Afrika bölgesinde yer alan bağımsız bir ülkedir.",area:"619.745 km²",founded:"2011",gov:"Başkanlık cumhuriyeti"}
 };
 
 var COUNTRY_LEADERS = {
@@ -457,14 +579,89 @@ ETH:"Etiyopya",FIN:"Finlandiya",FRA:"Fransa",DEU:"Almanya",GHA:"Gana",GRC:"Yunan
 HND:"Honduras",HUN:"Macaristan",ISL:"İzlanda",IND:"Hindistan",IDN:"Endonezya",IRN:"İran",IRQ:"Irak",
 IRL:"İrlanda",ISR:"İsrail",ITA:"İtalya",JPN:"Japonya",JOR:"Ürdün",KAZ:"Kazakistan",KEN:"Kenya",
 KWT:"Kuveyt",LVA:"Letonya",LBN:"Lübnan",LBY:"Libya",LTU:"Litvanya",LUX:"Lüksemburg",MYS:"Malezya",
-MAR:"Fas",MMR:"Myanmar",NPL:"Nepal",NLD:"Hollanda",NZL:"Yeni Zelanda",NGA:"Nijerya",NOR:"Norveç",
+MAR:"Fas",MLI:"Mali",MMR:"Myanmar",NPL:"Nepal",NLD:"Hollanda",NZL:"Yeni Zelanda",NGA:"Nijerya",NOR:"Norveç",
 OMN:"Umman",PAK:"Pakistan",PAN:"Panama",PRY:"Paraguay",PER:"Peru",PHL:"Filipinler",POL:"Polonya",
 PRT:"Portekiz",QAT:"Katar",ROU:"Romanya",RUS:"Rusya",SAU:"Suudi Arabistan",SRB:"Sırbistan",SGP:"Singapur",
 SVK:"Slovakya",VNM:"Vietnam",SVN:"Slovenya",ZAF:"Güney Afrika",KOR:"Güney Kore",ESP:"İspanya",
 LKA:"Sri Lanka",SDN:"Sudan",SWE:"İsveç",CHE:"İsviçre",SYR:"Suriye",TWN:"Tayvan",THA:"Tayland",
 TUN:"Tunus",TUR:"Türkiye",UKR:"Ukrayna",ARE:"Birleşik Arap Emirlikleri",GBR:"Birleşik Krallık",
 USA:"Amerika Birleşik Devletleri",URY:"Uruguay",UZB:"Özbekistan",VEN:"Venezuela",YEM:"Yemen",
-ZWE:"Zimbabve",COD:"Kongo Demokratik Cumhuriyeti"
+ZWE:"Zimbabve",COD:"Kongo Demokratik Cumhuriyeti",
+FJI:"Fiji",
+TZA:"Tanzanya",
+ESH:"Batı Sahra",
+PNG:"Papua Yeni Gine",
+SOM:"Somali",
+TCD:"Çad",
+HTI:"Haiti",
+DOM:"Dominik Cumhuriyeti",
+BHS:"Bahamalar",
+FLK:"Falkland Adaları",
+GRL:"Grönland",
+ATF:"Fransız Güney ve Antarktika Toprakları",
+TLS:"Doğu Timor",
+LSO:"Lesotho",
+CRI:"Kosta Rika",
+NIC:"Nikaragua",
+BLZ:"Belize",
+GUY:"Guyana",
+SUR:"Surinam",
+PRI:"Porto Riko",
+JAM:"Jamaika",
+BWA:"Botsvana",
+NAM:"Namibya",
+SEN:"Senegal",
+MRT:"Moritanya",
+BEN:"Benin",
+NER:"Nijer",
+CMR:"Kamerun",
+TGO:"Togo",
+CIV:"Fildişi Sahili",
+GIN:"Gine",
+GNB:"Gine-Bissau",
+LBR:"Liberya",
+SLE:"Sierra Leone",
+BFA:"Burkina Faso",
+CAF:"Orta Afrika Cumhuriyeti",
+COG:"Kongo Cumhuriyeti",
+GAB:"Gabon",
+GNQ:"Ekvator Ginesi",
+ZMB:"Zambiya",
+MWI:"Malavi",
+MOZ:"Mozambik",
+SWZ:"Esvatini",
+AGO:"Angola",
+BDI:"Burundi",
+MDG:"Madagaskar",
+PSE:"Filistin",
+GMB:"Gambiya",
+VUT:"Vanuatu",
+LAO:"Laos",
+PRK:"Kuzey Kore",
+BTN:"Bhutan",
+TJK:"Tacikistan",
+KGZ:"Kırgızistan",
+TKM:"Türkmenistan",
+ARM:"Ermenistan",
+MDA:"Moldova",
+NCL:"Yeni Kaledonya",
+SLB:"Solomon Adaları",
+AZE:"Azerbaycan",
+GEO:"Gürcistan",
+BRN:"Brunei",
+ERI:"Eritre",
+ATA:"Antarktika",
+NCY:"Kuzey Kıbrıs",
+DJI:"Cibuti",
+SML:"Somaliland",
+UGA:"Uganda",
+RWA:"Ruanda",
+BIH:"Bosna-Hersek",
+MKD:"Kuzey Makedonya",
+MNE:"Karadağ",
+XK:"Kosova",
+TTO:"Trinidad ve Tobago",
+SSD:"Güney Sudan"
 };
 
 // Natural Earth 1:110m verisinden alınmış gerçek ülke sınırları.
@@ -554,11 +751,27 @@ function buildOceanBorders(){
   globeVisual.add(oceanBorderLines);
 }
 
+function getResponsiveCameraDistance(){
+  var w = window.innerWidth || document.documentElement.clientWidth || 0;
+  var h = window.innerHeight || document.documentElement.clientHeight || 0;
+  // Yalnızca mobil görünümde küreyi biraz küçült.
+  // Dar dikey ekranlarda daha fazla boşluk, yatay telefonlarda dengeli görünüm sağlar.
+  if (w <= 560) return h > w ? 16.2 : 14.8;
+  if (w <= 820) return h > w ? 15.2 : 14.2;
+  return 13;
+}
+
+function updateResponsiveCamera(){
+  if (!camera) return;
+  camera.position.z = getResponsiveCameraDistance();
+  camera.updateProjectionMatrix();
+}
+
 function init(){
   var stage = document.getElementById('stage');
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(42, stage.clientWidth / stage.clientHeight, 0.1, 1000);
-  camera.position.set(0, 0, 13);
+  camera.position.set(0, 0, getResponsiveCameraDistance());
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
   renderer.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1));
@@ -722,7 +935,7 @@ function setStatLabels(l1, l2, l3, l4, l5){
 }
 
 var leaderFetchSequence = 0;
-var LEADER_CACHE_TTL = 24 * 60 * 60 * 1000;
+var LEADER_CACHE_TTL = 14 * 24 * 60 * 60 * 1000;
 var populationFetchSequence = 0;
 var POPULATION_CACHE_TTL = 365 * 24 * 60 * 60 * 1000;
 
@@ -779,9 +992,10 @@ async function fetchLivePopulationInfo(feature, fallbackText){
     return;
   }
 
-  document.getElementById('lPop').textContent = 'Nüfus';
-  document.getElementById('pPop').textContent = 'Yükleniyor…';
-  document.getElementById('pPop').title = 'Dünya Bankası verisi yükleniyor';
+  // Yerel nüfusu anında göster; güncel Dünya Bankası verisini arka planda sessizce al.
+  document.getElementById('lPop').textContent = 'Yaklaşık nüfus';
+  document.getElementById('pPop').textContent = fallbackText || '-';
+  document.getElementById('pPop').title = 'Yerel yedek veri • Dünya Bankası arka planda kontrol ediliyor';
 
   var url = 'https://api.worldbank.org/v2/country/' + encodeURIComponent(iso2) +
     '/indicator/SP.POP.TOTL?format=json&per_page=10';
@@ -874,7 +1088,7 @@ async function fetchLiveLeaderInfo(feature){
   var requestId = ++leaderFetchSequence;
   var cached = getCachedLeader(iso3);
   if (cached){
-    setLeaderCardState(cached.title, cached.name, cached.source + ' • 24 saatlik önbellekten', '');
+    setLeaderCardState(cached.title, cached.name, cached.source + ' • 14 günlük önbellekten', '');
     return;
   }
 
@@ -1264,7 +1478,7 @@ function bindEvents(){
   window.addEventListener('resize', function(){
     var stage = document.getElementById('stage');
     camera.aspect = stage.clientWidth / stage.clientHeight;
-    camera.updateProjectionMatrix();
+    updateResponsiveCamera();
     renderer.setSize(stage.clientWidth, stage.clientHeight);
   });
 }
