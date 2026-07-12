@@ -810,13 +810,18 @@ function getResponsiveCameraDistance(){
   var w = window.innerWidth || document.documentElement.clientWidth || 0;
   var h = window.innerHeight || document.documentElement.clientHeight || 0;
   var shortest = Math.max(280, Math.min(w, h));
+  var globeDisplayScale = 0.8; // Küreyi PC ve mobilde mevcut boyutundan %20 küçültür.
+  var baseDistance;
+
   if (w <= 820) {
-    // Telefonda masaüstüne göre yaklaşık %20-30 daha küçük küre.
-    var portraitBase = h >= w ? 17.4 : 15.7;
-    var compactExtra = shortest < 390 ? 0.8 : (shortest < 440 ? 0.35 : 0);
-    return portraitBase + compactExtra;
+    baseDistance = h >= w ? 17.4 : 15.7;
+    baseDistance += shortest < 390 ? 0.8 : (shortest < 440 ? 0.35 : 0);
+  } else {
+    baseDistance = 13;
   }
-  return 13;
+
+  // Perspektifte görünen boyut mesafeyle ters orantılıdır.
+  return baseDistance / globeDisplayScale;
 }
 
 function updateResponsiveCamera(){
