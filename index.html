@@ -274,6 +274,32 @@
     .panel { max-height: 72dvh; }
   }
 
+
+  /* Mobil bilgi kartı: daha kompakt yazılar ve boşluklar */
+  @media (max-width: 700px) {
+    .panel {
+      max-height: min(64dvh, 570px);
+      padding: 34px 16px calc(16px + env(safe-area-inset-bottom));
+      border-radius: 21px 21px 0 0;
+    }
+    .panel .close { width: 31px; height: 31px; font-size: 14px; }
+    .panel .eyebrow { font-size: 9px; margin-bottom: 6px; letter-spacing: .09em; }
+    .panel .flag, .panel .flag.country-iso { font-size: 23px; margin-bottom: 7px; }
+    .panel .name-block { margin-bottom: 14px; }
+    .panel .name { font-size: clamp(19px, 5.8vw, 24px); line-height: 1.12; }
+    .panel .stats { gap: 9px 12px; margin-bottom: 14px; }
+    .panel .stat { padding-top: 6px; }
+    .panel .stat .l, .panel .gov .l, .panel .leader .l { font-size: 8.5px; margin-bottom: 3px; }
+    .panel .stat .v { font-size: 12.5px; }
+    .panel .gov { padding-top: 7px; margin-bottom: 14px; }
+    .panel .gov .v { font-size: 12px; line-height: 1.35; }
+    .panel .leader { padding-top: 8px; margin-bottom: 14px; }
+    .panel .leader .v { font-size: 12.5px; line-height: 1.35; }
+    .panel .leader .meta { font-size: 8.5px; margin-top: 4px; }
+    .panel .fact { font-size: 11.5px; line-height: 1.48; padding-top: 12px; }
+    .panel .verified { margin-top: 10px; font-size: 8.5px; line-height: 1.35; }
+  }
+
 </style>
 </head>
 <body>
@@ -810,7 +836,8 @@ function getResponsiveCameraDistance(){
   var w = window.innerWidth || document.documentElement.clientWidth || 0;
   var h = window.innerHeight || document.documentElement.clientHeight || 0;
   var shortest = Math.max(280, Math.min(w, h));
-  var globeDisplayScale = 0.8; // Küreyi PC ve mobilde mevcut boyutundan %20 küçültür.
+  // Masaüstünde %20 küçük; mobilde buna ek olarak %10 daha küçük görünür.
+  var globeDisplayScale = w <= 820 ? 0.72 : 0.8;
   var baseDistance;
 
   if (w <= 820) {
