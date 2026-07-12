@@ -221,6 +221,59 @@
     .quiz-card { padding:20px; border-radius:18px; }
   }
 
+
+  /* Mobil kullanım ve Safari güvenli alan iyileştirmeleri */
+  @supports (height: 100dvh) {
+    html, body, #stage { height: 100dvh; }
+    #stage { min-height: 100dvh; }
+  }
+
+  @media (max-width: 700px) {
+    html, body { overscroll-behavior: none; }
+    #stage { height: 100svh; min-height: 100svh; }
+    canvas { touch-action: none; -webkit-user-select: none; user-select: none; }
+
+    .edu-tools {
+      top: calc(52px + env(safe-area-inset-top));
+      left: 12px; width: calc(100vw - 24px); gap: 7px;
+    }
+    .search-box input { height: 46px; border-radius: 14px; font-size: 16px; padding-left: 15px; }
+    .search-icon { top: 14px; }
+    .search-results { top: 52px; max-height: min(42vh, 320px); }
+    .search-item { padding: 12px; font-size: 14px; }
+    .edu-btn { height: 46px; min-width: 58px; border-radius: 14px; }
+
+    .panel {
+      max-height: min(68dvh, 620px);
+      padding: 38px 18px calc(20px + env(safe-area-inset-bottom));
+      border-radius: 24px 24px 0 0;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+    }
+    .panel::before {
+      content: ''; position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+      width: 42px; height: 4px; border-radius: 999px; background: rgba(255,255,255,.22);
+    }
+    .panel .close { top: 16px; right: 16px; width: 34px; height: 34px; }
+    .panel .eyebrow { padding-right: 42px; margin-bottom: 8px; }
+    .panel .flag { font-size: 27px; margin-bottom: 9px; }
+    .panel .name { font-size: clamp(22px, 7vw, 29px); line-height: 1.12; }
+    .panel .stats { grid-template-columns: 1fr 1fr; gap: 12px 14px; }
+    .panel .stat .v, .panel .leader .v { font-size: 14px; }
+    .panel .fact { font-size: 13px; line-height: 1.55; }
+    .panel .verified { padding-bottom: 4px; }
+
+    .hint { bottom: calc(12px + env(safe-area-inset-bottom)); }
+  }
+
+  @media (max-width: 380px) {
+    .brand .mark { font-size: 13px; }
+    .edu-tools { top: calc(48px + env(safe-area-inset-top)); }
+    .edu-btn { padding: 0 10px; }
+    .panel { max-height: 72dvh; }
+  }
+
 </style>
 </head>
 <body>
@@ -680,6 +733,8 @@ var yaw = 0.4, pitch = 0.25, targetYaw = 0.4, targetPitch = 0.25;
 var isDragging = false, lastX = 0, lastY = 0, pointerDownX = 0, pointerDownY = 0, didDrag = false;
 var dragVelocityX = 0, dragVelocityY = 0;
 var lastFrameTime = performance.now();
+var pageVisible = !document.hidden;
+document.addEventListener('visibilitychange', function(){ pageVisible = !document.hidden; lastFrameTime = performance.now(); });
 var flying = false, flyStart = null, flyTarget = null, flyT = 0;
 var flyDuration = 0.95;
 var countryFeatures = [];
@@ -754,10 +809,13 @@ function buildOceanBorders(){
 function getResponsiveCameraDistance(){
   var w = window.innerWidth || document.documentElement.clientWidth || 0;
   var h = window.innerHeight || document.documentElement.clientHeight || 0;
-  // Yalnızca mobil görünümde küreyi biraz küçült.
-  // Dar dikey ekranlarda daha fazla boşluk, yatay telefonlarda dengeli görünüm sağlar.
-  if (w <= 560) return h > w ? 16.2 : 14.8;
-  if (w <= 820) return h > w ? 15.2 : 14.2;
+  var shortest = Math.max(280, Math.min(w, h));
+  if (w <= 820) {
+    // Telefonda masaüstüne göre yaklaşık %20-30 daha küçük küre.
+    var portraitBase = h >= w ? 17.4 : 15.7;
+    var compactExtra = shortest < 390 ? 0.8 : (shortest < 440 ? 0.35 : 0);
+    return portraitBase + compactExtra;
+  }
   return 13;
 }
 
@@ -773,8 +831,9 @@ function init(){
   camera = new THREE.PerspectiveCamera(42, stage.clientWidth / stage.clientHeight, 0.1, 1000);
   camera.position.set(0, 0, getResponsiveCameraDistance());
 
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-  renderer.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1));
+  var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth <= 820;
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'default' });
+  renderer.setPixelRatio(Math.min(isMobileDevice ? 1.15 : 1.5, window.devicePixelRatio || 1));
   renderer.setSize(stage.clientWidth, stage.clientHeight);
   renderer.setClearColor(0x000000, 1);
   stage.insertBefore(renderer.domElement, stage.firstChild);
@@ -795,8 +854,7 @@ function init(){
   globeVisual = new THREE.Group();
   earthGroup.add(globeVisual);
 
-  var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-  var sphereSegments = isMobileDevice ? 64 : 96;
+  var sphereSegments = isMobileDevice ? 48 : 96;
   var geo = new THREE.SphereGeometry(R, sphereSegments, sphereSegments);
   var loader = new THREE.TextureLoader();
   loader.crossOrigin = 'anonymous';
@@ -817,7 +875,7 @@ function init(){
   earthMesh = new THREE.Mesh(geo, mat);
   globeVisual.add(earthMesh);
 
-  var atmoGeo = new THREE.SphereGeometry(R * 1.045, 64, 64);
+  var atmoGeo = new THREE.SphereGeometry(R * 1.045, isMobileDevice ? 40 : 64, isMobileDevice ? 40 : 64);
   var atmoMat = new THREE.ShaderMaterial({
     vertexShader: 'varying vec3 vNormal;\nvoid main(){\n  vNormal = normalize(normalMatrix * normal);\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}',
     fragmentShader: 'varying vec3 vNormal;\nvoid main(){\n  float intensity = pow(0.62 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 3.5);\n  gl_FragColor = vec4(0.36, 0.72, 1.0, 1.0) * intensity;\n}',
@@ -1237,7 +1295,8 @@ function flyToLatLon(lat, lon){
 function rotateGlobeByPixels(dx, dy){
   // Kamera sabit olduğu için ekranın yatay ve dikey eksenleri etrafında
   // quaternion ile döndürmek kutuplarda oluşan Euler kilitlenmesini önler.
-  var sensitivity = 0.0042;
+  var isTouchLike = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  var sensitivity = isTouchLike ? 0.0054 : 0.0042;
   var qHorizontal = new THREE.Quaternion().setFromAxisAngle(
     new THREE.Vector3(0, 1, 0), dx * sensitivity
   );
@@ -1266,7 +1325,8 @@ function onPointerMove(e){
   if (e.preventDefault) e.preventDefault();
   var dx = e.clientX - lastX, dy = e.clientY - lastY;
   lastX = e.clientX; lastY = e.clientY;
-  if (Math.hypot(e.clientX - pointerDownX, e.clientY - pointerDownY) > 5) didDrag = true;
+  var dragThreshold = (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) ? 8 : 5;
+  if (Math.hypot(e.clientX - pointerDownX, e.clientY - pointerDownY) > dragThreshold) didDrag = true;
 
   rotateGlobeByPixels(dx, dy);
   dragVelocityX = dx;
@@ -1451,6 +1511,11 @@ function setupQuiz(){
 
 function bindEvents(){
   var el = renderer.domElement;
+  ['panel','quizOverlay'].forEach(function(id){
+    var ui = document.getElementById(id);
+    if (!ui) return;
+    ui.addEventListener('pointerdown', function(ev){ ev.stopPropagation(); }, {passive:true});
+  });
   if (window.PointerEvent) {
     el.addEventListener('pointerdown', onPointerDown, { passive: false });
     window.addEventListener('pointermove', onPointerMove, { passive: false });
@@ -1474,17 +1539,25 @@ function bindEvents(){
       onPointerUp({ clientX:t ? t.clientX : lastX, clientY:t ? t.clientY : lastY, pointerId:1, preventDefault:function(){} });
     }, { passive:false });
   }
+  var panelEl = document.getElementById('panel');
+  // Bilgi kartına dokunmak küre tıklaması veya yeni ülke seçimi oluşturmaz.
+  ['pointerdown','pointerup','click','touchstart','touchend'].forEach(function(type){
+    panelEl.addEventListener(type, function(ev){ ev.stopPropagation(); }, { passive:true });
+  });
   document.getElementById('closePanel').addEventListener('click', closePanel);
   window.addEventListener('resize', function(){
     var stage = document.getElementById('stage');
     camera.aspect = stage.clientWidth / stage.clientHeight;
     updateResponsiveCamera();
-    renderer.setSize(stage.clientWidth, stage.clientHeight);
+    var mobileNow = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth <= 820;
+    renderer.setPixelRatio(Math.min(mobileNow ? 1.15 : 1.5, window.devicePixelRatio || 1));
+    renderer.setSize(stage.clientWidth, stage.clientHeight, false);
   });
 }
 
 function animate(now){
   requestAnimationFrame(animate);
+  if (!pageVisible) return;
 
   // İlk çağrı init() içinden zaman bilgisi olmadan gelebilir.
   // Geçersiz delta-time kürenin ölçeğini NaN yapıp görünmez hale getiriyordu.
